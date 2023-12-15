@@ -1,9 +1,9 @@
 console.log("hej verden")
 
-const URL = 'http://localhost:5173'
+const URL = 'http://localhost:5173/'
 const AUTHENTICATION_ROUTE = 'auth/login'
 
-function loginFacade() {
+function LoginFacade() {
 
 const setToken = (token) => {
     localStorage.setItem('jwtToken', token)
@@ -106,7 +106,7 @@ const getUserRoles = () =>
         logout, 
         fetchData}
 }
- const facade = loginFacade(); 
+ const facade = LoginFacade(); 
  export default facade;
 
 
