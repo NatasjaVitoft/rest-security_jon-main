@@ -1,50 +1,60 @@
-import  { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import  { useEffect, useState } from 'react';
+import facade from '../facades/loginFacade';
 
 export const Login = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+    const init = { username: '', password: '' };
+    const [loginCredentials, setLoginCredentials] = useState(init);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [dataFromServer, setDataFromServer] = useState('Loading...');
 
-  const navigate = useNavigate();
+    useEffect(() => {
+        facade.fetchData().then((data) => setDataFromServer(data));
+    }, [isLoggedIn]);
 
-  const handleLogin = () => {
-    const mockUsername = 'user';
-    const mockPassword = 'password';
 
-    if (username === mockUsername && password === mockPassword) {
-      console.log('Successful login');
-      navigate('/indkøbskurv');
-    } else {
-      // Invalid credentials, display an error message
-    ('Invalid username or password');
-    }
+  const performLogin = (evt) => {
+    evt.preventDefault();
+    facade.login(loginCredentials.username, loginCredentials.password, setIsLoggedIn);
   };
 
-  const handleSignup = () => {
+  const onChange = (evt) => {
+    setLoginCredentials({
+      ...loginCredentials,
+      [evt.target.id]: evt.target.value,
+    });
   };
+ 
+
+  
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form>
-        <div>
-          <label>Username:</label>
-          <input
-            type="text" placeholder = "Enter username" id ="username" value={username} onChange={(e) => setUsername(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input
-            type="password" placeholder = "Enter password" id= "password" value={password} onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <button type="button" onClick={handleLogin}> Login </button>
-      </form>
-      Dont have a user ? 
-        <button type="button" onClick={handleSignup}> Create Account </button>
-    </div>
-  );
-};
+    <>
+      <div>
+        <h1>
+          Login Demo 
 
-export default Login;
+          <form onChange={onChange}>
+            <input placeholder="User Name" id="username" />
+            <input placeholder="Password" id="password" />
+            <button onClick={performLogin}>Login</button>
+      </form>
+      <div>
+        {isLoggedIn ? (
+        <div> 
+        <p>Du er logget ind, {facade.getUserRoles()}</p>
+        <button onClick={() => facade.logout(setIsLoggedIn)}> LogOut</button>
+
+        {dataFromServer.map((users) => (
+        <p key ={users.id}>{users.username}</p>))}
+
+        </div>
+        ) : (
+        <p>Log på for at være med</p>)}
+      </div>
+        </h1>
+      </div>
+    </>
+  )
+}
+
+export default Login

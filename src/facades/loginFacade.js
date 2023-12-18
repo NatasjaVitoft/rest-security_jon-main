@@ -1,5 +1,3 @@
-console.log("hej verden")
-
 const URL = 'http://localhost:5173/'
 const AUTHENTICATION_ROUTE = 'auth/login'
 
