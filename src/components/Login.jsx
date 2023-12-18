@@ -1,57 +1,46 @@
-import  { useEffect, useState } from 'react';
+import  { useState } from 'react';
 import facade from '../facades/loginFacade';
 
 export const Login = () => {
-    const init = { username: '', password: '' };
-    const [loginCredentials, setLoginCredentials] = useState(init);
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [dataFromServer, setDataFromServer] = useState('Loading...');
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
+  
+    const handleLogin = async () => {
+      facade.login(username, password, (success, user) => {
+        if (success) {
+          console.log('Login successful:', user);
+          // Handle successful login, e.g., redirect to another page
+        } else {
+          console.error('Login failed');
+          setError('Login failed. Please check your credentials.');
+        }
+      });
+    };
 
-    useEffect(() => {
-        facade.fetchData().then((data) => setDataFromServer(data));
-    }, [isLoggedIn]);
-
-
-  const performLogin = (evt) => {
-    evt.preventDefault();
-    facade.login(loginCredentials.username, loginCredentials.password, setIsLoggedIn);
-  };
-
-  const onChange = (evt) => {
-    setLoginCredentials({
-      ...loginCredentials,
-      [evt.target.id]: evt.target.value,
-    });
-  };
-
-  return (
-    <>
-      <div>
-        <h1>
-          Login Demo 
-
-          <form onChange={onChange}>
-            <input placeholder="User Name" id="username" />
-            <input placeholder="Password" id="password" />
-            <button onClick={performLogin}>Login</button>
-      </form>
-      <div>
-        {isLoggedIn ? (
-        <div> 
-        <p>Du er logget ind, {facade.getUserRoles()}</p>
-        <button onClick={() => facade.logout(setIsLoggedIn)}> LogOut</button>
-
-        {dataFromServer.map((users) => (
-        <p key ={users.id}>{users.username}</p>))}
-
+    return (
+        <div>
+          <h1>Login Page</h1>
+          <div>
+            <label>Username:</label>
+            <input
+              type="text"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
+          <div>
+            <label>Password:</label>
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <button onClick={handleLogin}>Login</button>
+          {error && <p style={{ color: 'red' }}>{error}</p>}
         </div>
-        ) : (
-        <p>Log på for at være med</p>)}
-      </div>
-        </h1>
-      </div>
-    </>
-  )
-}
-
-export default Login
+      );
+    };
+    
+    export default Login;
