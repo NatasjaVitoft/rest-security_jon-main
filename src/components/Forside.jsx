@@ -1,7 +1,12 @@
+import { Navibar } from './Navbar.jsx';
+import { Menus } from './Menu.jsx';
+
 export function Forside() {
   return (
     <>
-      <h1> Forside </h1>
+      < Navibar />
+      < Menus />
     </>
   )
 }
+
