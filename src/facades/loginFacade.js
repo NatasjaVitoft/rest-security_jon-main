@@ -1,4 +1,4 @@
-const URL = 'http://localhost:5173/'
+const URL = 'http://localhost:3001/'
 const AUTHENTICATION_ROUTE = 'auth/login'
 
 function LoginFacade() {

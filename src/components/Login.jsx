@@ -23,9 +23,6 @@ export const Login = () => {
       [evt.target.id]: evt.target.value,
     });
   };
- 
-
-  
 
   return (
     <>
