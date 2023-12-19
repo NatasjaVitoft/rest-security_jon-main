@@ -5,16 +5,20 @@ export function Navibar() {
             <nav className="nav">
                 <a href="/" className="site-title">
                     <div className="font-effect-shadow-multiple">
-                        <img src="" alt="" />
+                      
                      StarBunny Accessories
+                     <img src="src\images\websiteImages\logo-star.png" alt="starbunny logo"  className="nav-logo"/>
                      </div>
                      </a>
                 <ul>
                     <li>
-                    <a href="/login">Login</a>
+                    <a href="/login" >Login</a>
                     </li>
                     <li>
                     <a href="/Indkøbskurv">Indkøbskurv</a>
+                    </li>
+                    <li>
+                    <a href="/liked">Farvoritter</a>
                     </li>
                 </ul>
             </nav>
