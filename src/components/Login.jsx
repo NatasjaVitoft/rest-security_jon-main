@@ -1,47 +1,51 @@
-import { useState } from 'react';
+import { useState} from 'react';
 import facade from '../facades/loginFacade';
 
-
 export function Login() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [message, setMessage] = useState('');
+    const init = { username: '', password: '' };
+    const [loginCredentials, setLoginCredentials] = useState(init);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-   const handleLogin = () => {
-    facade.login(username, password, (success) => {
-      if (success) {
-        // Redirect or perform any other necessary action upon successful login.
-        console.log('Login successful', username, password );
-      } else {
-        setMessage('Invalid credentials. Please try again.');
-      }
+  
+  const performLogin = (evt) => {
+    evt.preventDefault();
+    facade.login(loginCredentials.username, loginCredentials.password, setIsLoggedIn);
+  };
+
+  const onChange = (evt) => {
+    setLoginCredentials({
+      ...loginCredentials,
+      [evt.target.id]: evt.target.value,
     });
   };
 
-
   return (
-    <div className="Login">
-      <h1>Login Page</h1>
+    <>
+      <div className = "login-wrapper">
+        <h1>
+          Login Demo 
+
+          <form onChange={onChange}>
+            <input placeholder="Username" id="username" />
+            <input placeholder="Password" id="password" />
+            <button onClick={performLogin}>Login</button>
+      </form>
       <div>
-        <label>
-          Username:
-          <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} />
-        </label>
+        {isLoggedIn ? (
+        <div> 
+        <p>Du er logget ind</p>
+        <button onClick={() => facade.logout(setIsLoggedIn)}> LogOut</button>
+
+    
+
+        </div>
+        ) : (
+        <p>Log på for at være med</p>)}
       </div>
-      <div>
-        <label>
-          Password:
-          <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-        </label>
+        </h1>
       </div>
-      <div>
-        <button onClick={handleLogin}>Login</button>
-      </div>
-      <div>
-        <p>{message}</p>
-      </div>
-    </div>
-  );
+    </>
+  )
 }
 
 export default Login;

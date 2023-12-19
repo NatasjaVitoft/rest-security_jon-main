@@ -74,7 +74,6 @@ const makeOptions = (method, payload, addToken) => {
     }
     return opts;
 }
-
 const getUserRoles = () =>
     {
         const token = getToken()
@@ -92,6 +91,8 @@ const getUserRoles = () =>
         const roles = getUserRoles().split(',')
         return loggedIn && roles.includes(neededRole)
     }
+
+
 
     return {
         login,
