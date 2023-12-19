@@ -16,7 +16,7 @@ body {
   justify-content: space-between;
   align-items: center;
   padding-top: 5px;
-  font-family: Helvetica, sans-serif;
+  font-family: "Courgette";
   font-size: 20px;
 
 }
@@ -75,12 +75,20 @@ background-color: #ff6699;
 border-radius: 10px;
  
 }
+.girly:hover{
+  border-radius: 10px;
+  color: #990033;
+}
 
 .cottagecore{
   font-family: "Courgette";
   background-color: #2c5508;
   color: #fff5a9;
   border-radius: 10px;
+}
+.cottagecore:hover{
+  border-radius: 10px;
+  color: #990033;
 }
 
 .kawaii{
@@ -89,12 +97,20 @@ border-radius: 10px;
   color: white;
   border-radius: 10px;
 }
+.kawaii:hover{
+  border-radius: 10px;
+  color: #990033;
+}
 
 .space{
   font-family: "Audiowide";
   background-color: #151225;
   color: #ffffff;
   border-radius: 10px;
+}
+.space:hover{
+  border-radius: 10px;
+  color: #990033;
 }
 
 .goth{
@@ -104,12 +120,20 @@ border-radius: 10px;
   border-radius: 10px;
   
 }
+.goth:hover{
+  border-radius: 10px;
+  color: #990033;
+}
 
 .elegant{
   font-family: 'Times New Roman', Times, serif;
   background-color: rgb(98, 0, 128);
   color: yellow;
   border-radius: 10px;
+}
+.elegant:hover{
+  border-radius: 10px;
+  color: #990033;
 }
 .shopby{
   font-family: "Sofia";
@@ -128,5 +152,6 @@ border-radius: 10px;
 .smykker{
   border-radius: 10px;
   border: #990033 solid 2px;
+  font-family: "Courgette";
 
 }
