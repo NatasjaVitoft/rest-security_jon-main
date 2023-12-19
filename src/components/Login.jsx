@@ -1,10 +1,16 @@
-import { useState} from 'react';
+import { useState, useEffect} from 'react';
 import facade from '../facades/loginFacade';
 
 export function Login() {
     const init = { username: '', password: '' };
     const [loginCredentials, setLoginCredentials] = useState(init);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [dataFromServer, setDataFromServer] = useState('Loading...');
+
+
+    useEffect(() => {
+        facade.fetchData('users', 'GET').then((data) => setDataFromServer(data));
+      }, [isLoggedIn]);
 
   
   const performLogin = (evt) => {
@@ -36,7 +42,8 @@ export function Login() {
         <p>Du er logget ind</p>
         <button onClick={() => facade.logout(setIsLoggedIn)}> LogOut</button>
 
-    
+        {dataFromServer.map((user) => (
+        <p key ={user.id}>{user.hotelName}</p>))}
 
         </div>
         ) : (

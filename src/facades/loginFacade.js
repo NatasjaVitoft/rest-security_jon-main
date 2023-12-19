@@ -1,5 +1,7 @@
 
-const URL = 'http://localhost:3001/users'
+const URL = 'http://localhost:3001/api/v1/'
+const AUTHENTICATION_ROUTE = 'auth/login'
+
 
 export function loginFacade() {
 const setToken = (token) => {
@@ -30,7 +32,7 @@ const login = (user, password, callback) => {
     }
     const options = makeOptions("POST", payload)
 
-    return fetch(URL,  options) // fecth retunere et promise 
+    return fetch(URL+ AUTHENTICATION_ROUTE,  options) // fecth retunere et promise 
     
     .then(handleHttpErrors) 
     .then ( json => 
@@ -53,7 +55,7 @@ const login = (user, password, callback) => {
 const fetchData = (endpoint, method, payload) =>
     {
         const options = makeOptions(method, payload, true); //True add's the token
-        return fetch(URL, endpoint, options).then(handleHttpErrors);
+        return fetch(URL + endpoint, options).then(handleHttpErrors);
     }
 
 
