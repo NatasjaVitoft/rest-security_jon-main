@@ -1,9 +1,10 @@
+console.log("hej verden")
 
-const URL = 'http://localhost:3001/api/v1/'
+const URL = 'http://localhost:7070/api/v1/'
 const AUTHENTICATION_ROUTE = 'auth/login'
 
-
 export function loginFacade() {
+
 const setToken = (token) => {
     localStorage.setItem('jwtToken', token)
 }
@@ -26,14 +27,14 @@ const handleHttpErrors = (res)  => {
 
 
 const login = (user, password, callback) => {
+    console.log("Jeg er fanget inde i login funktionen", user, password)   
     const payload = {
         username: user,
         password: password
     }
     const options = makeOptions("POST", payload)
 
-    return fetch(URL+ AUTHENTICATION_ROUTE,  options) // fecth retunere et promise 
-    
+    return fetch(URL + AUTHENTICATION_ROUTE, options) // fecth retunere et promise 
     .then(handleHttpErrors) 
     .then ( json => 
     {
@@ -76,6 +77,7 @@ const makeOptions = (method, payload, addToken) => {
     }
     return opts;
 }
+
 const getUserRoles = () =>
     {
         const token = getToken()
@@ -93,8 +95,6 @@ const getUserRoles = () =>
         const roles = getUserRoles().split(',')
         return loggedIn && roles.includes(neededRole)
     }
-
-
 
     return {
         login,
