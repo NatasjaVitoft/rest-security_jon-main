@@ -1,3 +1,5 @@
+import { Navibar } from "./Navbar.jsx";
+import { Menus } from "./Menu.jsx";
 import { useState, useEffect } from 'react'
 import facade from '../facades/loginFacade';
 
@@ -27,6 +29,8 @@ export function Login() {
   return (
     <>
       <div>
+      <Navibar />
+            <Menus />
         <h1>
           Login Demo 
 
@@ -54,4 +58,5 @@ export function Login() {
   )
 }
 
-export default Login
+
+

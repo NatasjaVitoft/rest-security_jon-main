@@ -1,5 +1,8 @@
 
 import { Link } from 'react-router-dom'; 
+import { Navibar } from './Navbar.jsx';
+import { Menus } from './Menu.jsx';
+
 
 export function Forside() {
   return (
@@ -17,7 +20,9 @@ export function Forside() {
       </ul>
     </nav>
        </div>
-    
+      < Navibar />
+      < Menus />
     </>
   )
 }
+
