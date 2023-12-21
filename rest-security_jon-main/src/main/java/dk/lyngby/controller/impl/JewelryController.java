@@ -83,6 +83,19 @@ public class JewelryController implements IController<Jewelry, Integer> {
         ctx.res().setStatus(204);
     }
 
+
+    public void readType (Context ctx) {
+        // request
+        String type = ctx.pathParam("type");
+        // entity
+        var jewelries = dao.readByType(type);
+        // dto
+        var jewelryDtos = JewelryDTO.toJewelryDTOList(jewelries);
+        // response
+        ctx.res().setStatus(200);
+        ctx.json(jewelryDtos, JewelryDTO.class);
+    }
+
     @Override
     public boolean validatePrimaryKey(Integer integer) {
         return false;

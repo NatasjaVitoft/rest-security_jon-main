@@ -75,7 +75,14 @@ public class JewelryDAO implements IDao<Jewelry, Integer> {
         }
     }
 
-    
+    public List<Jewelry> readByType(String type) {
+        try (var em = emf.createEntityManager())
+        {
+            var query = em.createQuery("SELECT j FROM Jewelry j WHERE j.type = :type", Jewelry.class);
+            query.setParameter("type", type);
+            return query.getResultList();
+        }
+    }
 
     @Override
     public boolean validatePrimaryKey(Integer integer) {

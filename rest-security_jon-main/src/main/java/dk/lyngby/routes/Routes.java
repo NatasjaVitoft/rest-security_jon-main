@@ -24,6 +24,8 @@ public class Routes {
 
     private final JewelryRoute jewelryRoute = new JewelryRoute();
 
+    private final NecklaceRoute necklaceRoute = new NecklaceRoute();
+
     private final Logger LOGGER = LoggerFactory.getLogger(Routes.class);
 
     private void requestInfoHandler(Context ctx) {
@@ -40,6 +42,7 @@ public class Routes {
                 path("/", hotelRoute.getRoutes());
                 path("/", roomRoute.getRoutes());
                 path("/", jewelryRoute.getRoutes());
+                path("/", necklaceRoute.getRoutes());
             });
 
             app.after(ctx -> LOGGER.info(" Request {} - {} was handled with status code {}", count++, ctx.attribute("requestInfo"), ctx.status()));

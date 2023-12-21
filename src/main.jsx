@@ -12,7 +12,6 @@ import { Products } from "./components/Products.jsx";
 import { Orders } from "./components/Orders.jsx";
 import { Profil } from "./components/Profil.jsx";
 import { Likede } from "./components/Likede.jsx";
-import { JewelryComponent } from "./components/Necklace.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -27,7 +26,6 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Route path="/orders" element={<Orders />} />
         <Route path="/profil" element={<Profil />} />
         <Route path="/likede" element={<Likede />} />
-        <Route path="/necklace" element={<JewelryComponent />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
