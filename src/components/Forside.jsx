@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { Navibar } from "./Navbar.jsx";
 import { Menus } from "./Menu.jsx";
 import { useEffect, useState } from "react";

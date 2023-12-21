@@ -13,7 +13,7 @@ export const getAllJewelry = async () => {
         const data = await handleHttpErrors(response);
         return data;
     } catch (error) {
-        console.error('Error fetching jewelry:', error);
+        console.error(error);
         throw error;
     }
 };
