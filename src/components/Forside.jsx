@@ -22,7 +22,7 @@ export function JewelryComponent() {
         const data = await getAllJewelry();
         setJewelry(data);
       } catch (error) {
-        console.error("Error fetching jewelry:", error);
+        console.error(error);
       }
     };
 
