@@ -75,6 +75,8 @@ public class JewelryDAO implements IDao<Jewelry, Integer> {
         }
     }
 
+    
+
     @Override
     public boolean validatePrimaryKey(Integer integer) {
         try(var em = emf.createEntityManager()) {

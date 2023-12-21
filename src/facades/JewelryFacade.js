@@ -19,5 +19,7 @@ export const getAllJewelry = async () => {
 };
 
 export const getNecklaces = async () => {
-    const response = await.fetch(`${BASE_URL}/jewelry/necklaces`);
-}
+    const response = await fetch(`${BASE_URL}/jewelry/necklaces`);
+    const data = await handleHttpErrors(response);
+    return data; 
+};
